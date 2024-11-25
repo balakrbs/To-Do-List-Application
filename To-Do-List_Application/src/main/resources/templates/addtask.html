@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Create Task</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/homeStyle.css" />
+    <link rel="stylesheet" href="/addTaskStyle.css" />
+    <script
+      src="https://kit.fontawesome.com/6cb71b80aa.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark m-lg-5 m-md-5">
+        <div class="container-fluid">
+          <a class="navbar-brand title" href="/api/tasks"
+            >Stay Organized, Stay Ahead.</a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarCollapse"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/api/tasks">Tasks</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/api/tasks/addingpage">Add</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/api/tasks/listpage">List</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Search</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div
+        class="reg-container d-flex justify-content-center align-items-center"
+      >
+        <div class="register-form w-100">
+          <h2 class="text-center quote text-warning">
+            “Plan Your Day, Own Your Tomorrow.”
+          </h2>
+          <form class="needs-validation mt-4" action="/api/tasks/update/{{task.id}}" method="post" novalidate>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="validationCustom05" class="form-label">Id</label>
+                <input
+                type="text"
+                class="form-control"
+                id="validationCustom05"
+                name="id"
+                th:value="${task.id != 0 ? task.id : ''}"
+                placeholder="Task Id"
+                required
+                th:readonly="${task.id != 0}"
+                th:hidden="${task.id != 0}"  />
+                
+                <div class="invalid-feedback">Provide a Unique digit.</div>
+              </div>
+              <div class="col-md-8">
+                <label for="validationCustomUsername" class="form-label"
+                  >Title</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="validationCustomUsername"
+                  name="title"
+                  placeholder="Task Title"
+                  th:value="${task.title}"
+                  required
+                />
+                <div class="invalid-feedback">Provide heading.</div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label for="validationTextarea description" class="form-label"
+                  >Description</label>
+                <textarea
+                  class="form-control"
+                  id="validationTextarea"
+                  rows="4"
+                  name="description"                  
+                  placeholder="Describe your Task Here.."
+                  th:text="${task.description}" 
+                  required></textarea>
+                <div class="invalid-feedback">
+                  Provide description of the task
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="validationCustom04" class="form-label"
+                  >Status</label
+                >
+                <select class="form-select" id="validationCustom04" name="status" required>
+                  <option value="Pending" th:selected="${task.status == 'Pending'}">Pending</option>
+                  <option value="In Progress" th:selected="${task.status == 'In Progress'}">In progress</option>
+                  <option value="Completed" th:selected="${task.status == 'Completed'}">Completed</option>
+                </select>
+                <div class="invalid-feedback">Please select status.</div>
+              </div>
+              <div
+                class="col-md-6 d-flex align-items-center justify-content-end"
+              >
+                <button
+                  class="btn btn-outline-warning mt-4 ps-4 pe-4"
+                  type="submit"
+                >
+                  <i class="fa-regular fa-plus"></i> ADD
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-body-tertiary fixed-bottom">
+      <div class="container">
+        <span class="text-body-secondary"> Custom by <b>Bala KRBS</b>.</span>
+      </div>
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/addtaskJs.js"></script>
+  </body>
+</html>
