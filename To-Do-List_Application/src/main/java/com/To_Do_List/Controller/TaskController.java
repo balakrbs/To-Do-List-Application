@@ -91,5 +91,30 @@ public class TaskController {
         task.setId(id);
         taskService.saveTask(task);
         return "redirect:/api/tasks";
-    }    
+    }
+    
+    //Navigate to the Search page
+    @GetMapping("/search")
+    public String searchPage() {
+    	return "search";
+    }
+    
+    @PostMapping("/searchByID/{id}")
+    public String searchById(@RequestParam("taskId") Integer taskId,Model model) {
+    	Task task=taskService.getTaskById(taskId);
+
+        if (task != null) {
+            model.addAttribute("task", task); 
+        } else {
+            model.addAttribute("error", "Task not found with ID: " + taskId);
+        }
+        return "search";
+    }
+    @GetMapping("/view/{id}")
+    public String view(@PathVariable("id") Integer id, Model model) {
+        Task task = taskService.getTaskById(id);
+        model.addAttribute("task", task);
+        return "search";
+    }
+    
 }

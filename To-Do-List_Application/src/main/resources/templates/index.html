@@ -40,7 +40,7 @@
 		                <a class="nav-link" href="/api/tasks/listpage">List</a>
 		              </li>
 		              <li class="nav-item">
-		                <a class="nav-link" href="#">Search</a>
+		                <a class="nav-link" href="/api/tasks/search">Search</a>
 		              </li>
 		            </ul>
                   </div>
@@ -66,7 +66,7 @@
                       <h5 class="card-title h4 text-wrap" th:text="${task.title}"></h5>
                       <hr>
                       <p class="card-text text-truncate"th:text="${task.description}"></p>
-                      <a href="#" class="btn btn-outline-warning">View</a>
+                      <a th:href="@{/api/tasks/view/{id}(id=${task.id})}" class="btn btn-outline-warning">View</a>
                     </div>
                   </div>
                 </div>             

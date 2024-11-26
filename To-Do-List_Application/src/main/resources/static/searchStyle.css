@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.container-2 {
+    display: flex;
+    justify-content: center;
+  }
+.container-1,.container-2 {
+  margin-top: 20px;
+}
+.search-box {
+  max-width: 30%;
+}
+.card-header {
+  font-size: 30px;
+}
+.descrition-status {
+  margin: 25px;
+  display: flex;
+  justify-content: space-around;
+}
+.card-group{
+    display: flex;
+    justify-content: space-around;
+}
+.form-control:focus{
+    border-color: rgb(255, 203, 32);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(255, 203, 32);
+}
+
+@media (max-width: 767px) {
+  .search-box {
+    max-width: 60%;
+  }
+  .card-header {
+    font-size: 25px;
+  }
+  .descrition-status {
+    margin: 0;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .card-group{
+    display: block;
+}
+}
