@@ -75,12 +75,18 @@
               <th:block th:each="task : ${completedTasks}">
                 <div class="col-md-5 col-sm-6 col-md-12 col-lg-12 mb-3">
                   <div class="card border-success">
+                  <p class="card-header p-1 bg-success text-white text-center fs-6 fw-bold" >ID : <span class="fw-bold" th:text="${task.id}"> </span>
                     <div class="card-body">
                       <h5 class="card-title fs-4 text-wrap" th:text="${task.title}">title</h5>
                       <hr />
                       <p class="card-text fs-6" th:text="${task.description}">description
                       </p>
-                       <p class="text-muted" th:text="'Status: ' + ${task.status}">status</p>
+                       <p class="card-text fs-6">Status : <span class="text-success fw-bold" th:text="${task.status}"> </span>            
+                      </p>
+                      <div class="card-group">
+                        <p class="fw-light">Assigned :<br><span class="fw-medium"  th:text="${task.createdAt}"></span></p>
+                        <p class="fw-light">Modified :<br><span class="fw-medium" th:text="${task.updatedAt}"></span></p>
+                      </div>
                       <div class="function-btns">
                         <a th:href="@{/api/tasks/addingpage/{id}(id=${task.id})}" class="btn btn-outline-warning ps-4 pe-4">
   							<i class="fa-sharp fa-solid fa-pencil"></i>
@@ -106,12 +112,18 @@
               <th:block th:each="task : ${inProgressTasks}">
                 <div class="col-md-5 col-sm-6 col-md-12 col-lg-12 mb-3">
                   <div class="card border-warning">
+                  <p class="card-header p-1 bg-warning text-white text-center fs-6 fw-bold">ID : <span class="fw-bold" th:text="${task.id}"> </span>  
                     <div class="card-body">
                       <h5 class="card-title fs-4 text-wrap" th:text="${task.title}">title</h5>
                       <hr />
                       <p class="card-text fs-6" th:text="${task.description}">description
                       </p>
-                      <p class="text-muted" th:text="'Status: ' + ${task.status}">status</p>
+                      <p class="card-text fs-6">Status : <span class="text-warning fw-bold" th:text="${task.status}"></span>            
+                      </p>
+                      <div class="card-group">
+                        <p class="fw-light" >Assigned :<br><span class="fw-medium" th:text="${task.createdAt}"></span></p>
+                        <p class="fw-light" >Modified :<br><span class="fw-medium" th:text="${task.updatedAt}"></span></p>
+                      </div>
                       <div class="function-btns">
                         <a th:href="@{/api/tasks/addingpage/{id}(id=${task.id})}" class="btn btn-outline-warning ps-4 pe-4">
   							<i class="fa-sharp fa-solid fa-pencil"></i>
@@ -137,12 +149,18 @@
               <th:block th:each="task : ${pendingTasks}">
                 <div class="col-md-5 col-sm-6 col-md-12 col-lg-12 mb-3">
                   <div class="card border-danger">
+                  <p class="card-header p-1 bg-danger text-white text-center fs-6 fw-bold">ID : <span class="fw-bold" th:text="${task.id}"> </span>
                     <div class="card-body">
                       <h5 class="card-title fs-4 text-wrap" th:text="${task.title}">title</h5>
                       <hr />
                       <p class="card-text fs-6" th:text="${task.description}">description
                       </p>
-                      <p class="text-muted" th:text="'Status: ' + ${task.status}">status</p>
+                      <p class="card-text fs-6">Status : <span class="text-danger fw-bold" th:text="${task.status}"></span>            
+                      </p>
+                      <div class="card-group">
+                        <p class="fw-light" >Assigned :<br><span class="fw-medium" th:text="${task.createdAt}"></span></p>
+                        <p class="fw-light" >Modified :<br><span class="fw-medium" th:text="${task.updatedAt}"></span></p>
+                      </div>
                       <div class="function-btns">
                         <a th:href="@{/api/tasks/addingpage/{id}(id=${task.id})}" class="btn btn-outline-warning ps-4 pe-4">
   							<i class="fa-sharp fa-solid fa-pencil"></i>

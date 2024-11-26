@@ -80,16 +80,16 @@ public class TaskController {
     // View the update task page
     @GetMapping("/addingpage/{id}")
     public String showUpdatePage(@PathVariable("id") Integer id, Model model) {
-        Task task = taskService.getTaskById(id);  // Fetch the task by ID
-        model.addAttribute("task", task);  // Add the task object to the model
-        return "addtask";  // Return the update page view
+        Task task = taskService.getTaskById(id);
+        model.addAttribute("task", task);
+        return "addtask";
     }
 
     // Update a task
     @PostMapping("/update/{id}")
     public String updateTask(@PathVariable("id") Integer id, @ModelAttribute Task task) {
-        task.setId(id);  // Ensure the task ID is correctly set for update
-        taskService.saveTask(task);  // Save the updated task
-        return "redirect:/api/tasks";  // Redirect back to task list
+        task.setId(id);
+        taskService.saveTask(task);
+        return "redirect:/api/tasks";
     }    
 }

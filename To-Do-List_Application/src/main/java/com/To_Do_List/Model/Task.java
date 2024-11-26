@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Task {
 
     @Id
-    private int id;
+    private Integer id;
 
     @NotNull(message = "Give the Title")
     private String title;
@@ -28,7 +28,7 @@ public class Task {
 
     // Getters and setters...
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

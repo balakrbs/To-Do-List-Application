@@ -72,20 +72,27 @@
           <h2 class="text-center quote text-warning">
             “Plan Your Day, Own Your Tomorrow.”
           </h2>
-          <form class="needs-validation mt-4" action="/api/tasks/update/{{task.id}}" method="post" novalidate>
-            <div class="row mb-3">
+          <form class="needs-validation mt-4" th:action="@{/api/tasks/save}" method="post" novalidate>
+            <div class="row mb-3" >
               <div class="col-md-4">
                 <label for="validationCustom05" class="form-label">Id</label>
                 <input
+                th:if="${task.id == null}"
                 type="text"
                 class="form-control"
-                id="validationCustom05"
+                id="taskId"
                 name="id"
-                th:value="${task.id != 0 ? task.id : ''}"
-                placeholder="Task Id"
-                required
-                th:readonly="${task.id != 0}"
-                th:hidden="${task.id != 0}"  />
+                placeholder="Task ID"
+                th:value="${task.id}"
+                required/>
+                <input
+                type="hidden"
+                class="form-control"
+                id="taskId"
+                name="id"
+                th:if="${task.id != null}"
+                th:value="${task.id}"
+                required/>
                 
                 <div class="invalid-feedback">Provide a Unique digit.</div>
               </div>

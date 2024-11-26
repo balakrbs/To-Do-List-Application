@@ -2,7 +2,6 @@ package com.To_Do_List.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,15 +17,21 @@ public class TaskService {
 
     // Save Task (handles both create and update)
     public Task saveTask(Task task) {
-        if (task.getId() == 0) {
+        if (task.getId() != null) {
+            Task existingTask = taskRepo.findById(task.getId()).orElse(null);
+            if (existingTask != null) {
+                task.setCreatedAt(existingTask.getCreatedAt());
+            }
+        }
+
+        if (task.getCreatedAt() == null) {
             task.setCreatedAt(LocalDateTime.now());
         }
+
         task.setUpdatedAt(LocalDateTime.now());
-        return taskRepo.save(task); // Save the task to the database
+        return taskRepo.save(task);
     }
-    public Task getTaskById(Integer id) {
-    	return taskRepo.findById(id).orElse(null);
-    }
+
 
     // Get All Tasks method
     public List<Task> getAllTask() {
@@ -34,8 +39,8 @@ public class TaskService {
     }
 
     // Get Task by ID method
-    public Optional<Task> getById(Integer id) {
-        return taskRepo.findById(id);
+    public Task getTaskById(Integer id) {
+        return taskRepo.findById(id).orElse(null);
     }
     
     // Delete Task method

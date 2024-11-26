@@ -37,6 +37,7 @@ main {
  .form-control::placeholder {
     opacity: 0.5;
   }
+  
 
 @media (max-width: 991px) {
     .reg-container {
